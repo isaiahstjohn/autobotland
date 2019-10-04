@@ -30,46 +30,17 @@ let total_matches = 0;
     await page.keyboard.down("Enter");
     await page.waitFor(5000);
     // Attack
-    await page.evaluate(()=>{
-      let btns = [...document.querySelectorAll("button")];
-      btns.forEach(function (btn) {
-        if (btn.innerHTML.search('data-icon="sword"') > 0){
-          btn.click();
-        }
-      });
-    });
+    clickBtnInnerHTML('data-icon="sword"');
     for(let matches = 0; matches < 3; matches++){
       console.log(`Begin match ${++total_matches}`);
       await page.waitFor(5000);
       // Begin battle
-      await page.evaluate(()=>{
-        let btns = [...document.querySelectorAll("button")];
-        btns.forEach(function (btn) {
-          if (btn.innerHTML.search('src="/atk_') > 0){
-            btn.click();
-          }
-        });
-      });
+      clickBtnInnerHTML('src="/atk_');
       await page.waitFor(500);
-      await page.evaluate(()=>{
-        let btns = [...document.querySelectorAll("button")];
-        btns.forEach(function (btn) {
-          if (btn.innerHTML.search('src="/atk_') > 0){
-            btn.click();
-          }
-        });
-      });
+      clickBtnInnerHTML('src="/atk_');
       await page.waitFor(500);
-   
       // Open Blueprints
-      await page.evaluate(()=>{
-        let btns = [...document.querySelectorAll("button")];
-        btns.forEach(function (btn) {
-          if (btn.innerHTML.search('3vx1u3tfvn37') > 0){
-            btn.click();
-          }
-        });
-      });
+      clickBtnInnerHTML('3vx1u3tfvn37');
       await page.waitFor(500);
       //Place Robots
       await page.mouse.click(200, 100);
@@ -92,14 +63,8 @@ let total_matches = 0;
         await page.mouse.click(100 + 70 * (1 + matches), 350 + 70 * (1 + matches));
         await page.waitFor(500); 
         // Begin battle
-        await page.evaluate(()=>{
-          let btns = [...document.querySelectorAll("button")];
-          btns.forEach(function (btn) {
-            if (btn.innerHTML.search('src="/atk_') > 0){
-              btn.click();
-            }
-          });
-        });
+
+        clickBtnInnerHTML('src="/atk_');
         await page.waitFor(40 * 1000);
       }
       console.log('Match over');
